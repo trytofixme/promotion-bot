@@ -22,6 +22,7 @@ ADMIN_COMMANDS = [
 
 class BotConfig(BaseModel):
     token: SecretStr
+    telegram_api_server: Optional[str] = None
     admin_usernames: list[str] = []
 
 class SchedulerConfig(BaseModel):

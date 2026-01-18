@@ -13,10 +13,6 @@ from src.agents.scheduler import scheduler
 async def main():
     logging.basicConfig(level=logging.INFO)
 
-    if settings.bot.allowed_ids:
-        dp.message.filter(F.from_user.id.in_(settings.bot.allowed_ids))
-        dp.callback_query.filter(F.from_user.id.in_(settings.bot.allowed_ids))
-
     dp.callback_query.middleware(CallbackAnswerMiddleware(pre=True, cache_time=10))
     dp.include_router(root_router)
 
