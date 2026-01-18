@@ -36,7 +36,7 @@ class ExcelLoader:
             quiz = str(row["Викторина"]).strip()
             question = str(row["Вопрос"]).strip()
             answer = str(row["Ответ"]).strip()
-            is_correct = bool(row["Правильный ответ"])
+            is_correct = str(row["Правильный ответ"])
 
             quizzes[quiz][question].append(
                 {

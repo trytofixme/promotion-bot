@@ -77,7 +77,7 @@ async def handle_events_excel(message: Message):
 async def handle_quiz_excel(message: Message):
     file = await message.bot.download(message.document)
     quizzes = excel_loader.load_quizzes(file)
-    quizz_repository(quizzes)
+    quizz_repository.save_quizzes(quizzes)
 
     await message.answer(f"✅ Загружено викторин: {len(quizzes)}")
 

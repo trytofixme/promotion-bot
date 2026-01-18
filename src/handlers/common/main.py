@@ -24,8 +24,7 @@ async def start(message: Message, state: FSMContext):
 
     user = message.from_user
     admin = AdminUtils.is_admin(user)
-    if not admin:
-        await user_repository.add_user(message.from_user.id)
+    await user_repository.add_user(message.from_user.id)
 
     await message.bot.set_my_commands(
         ADMIN_COMMANDS if admin else COMMON_COMMANDS,
@@ -41,5 +40,5 @@ async def start(message: Message, state: FSMContext):
         "🔔 Уведомления приходят автоматически — ничего настраивать не нужно.\n"
         "🕹 Викторины — по желанию, без спама и давления.\n\n"
         "Поехали? 🚀 Оставайся на связи — дальше будет интересно.",
-        reply_markup=None if admin else user_menu(),
+        reply_markup=user_menu() if admin else user_menu(),
     )

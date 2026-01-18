@@ -87,7 +87,7 @@ async def handle_answer(callback: CallbackQuery, state: FSMContext):
     question = questions[index]
     answers = question["answers"]
 
-    if answers[answer_index]["correct"] == "Да":
+    if answers[answer_index].get("correct") == "Да":
         correct += 1
 
     index += 1

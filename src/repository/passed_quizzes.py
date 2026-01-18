@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Dict, Set
 
+
 class QuizPassedRepository:
     def __init__(self, path: Path):
         self._path = path

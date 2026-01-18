@@ -5,6 +5,7 @@ from typing import List
 
 from src.models.event import Event
 
+
 DATE_FMT = "%Y-%m-%d %H:%M:%S"
 
 

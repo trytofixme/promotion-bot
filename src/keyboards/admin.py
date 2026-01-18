@@ -1,5 +1,6 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+
 def admin_menu():
     return InlineKeyboardMarkup(
         inline_keyboard=[

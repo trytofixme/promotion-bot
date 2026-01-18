@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -5,7 +6,10 @@ from aiogram.types import BotCommand
 from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+if getattr(sys, "frozen", False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).resolve().parents[1]
 
 COMMON_COMMANDS = [
     BotCommand(command="start", description="Перезапустить бота"),
@@ -18,14 +22,14 @@ ADMIN_COMMANDS = [
 
 class BotConfig(BaseModel):
     token: SecretStr
-    telegram_api_server: Optional[str] = None
-    allowed_ids: list[int] = []
     admin_usernames: list[str] = []
 
+class SchedulerConfig(BaseModel):
+    notify_before_minutes: int
 
 class Settings(BaseSettings):
     bot: BotConfig
-    db_file: str = "database.db"
+    scheduler: SchedulerConfig
 
     model_config = SettingsConfigDict(
         env_file=BASE_DIR / ".env",
